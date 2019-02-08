@@ -35,8 +35,7 @@ namespace Figth
             Console.WriteLine("strengt" + "" + strength);
             Console.WriteLine("damage" + "" + damage);
             Console.WriteLine("Health" + "" + health + "\n");
-
-
+            
             //motståndare
             Console.WriteLine(Name1);
             Console.WriteLine("strengt" + strength1);

@@ -41,7 +41,7 @@ namespace Figth
                 }
                 else if (!me.Alive)
                 {
-
+                    
                     Console.WriteLine(me.Name + "" + "You are dead");
                  
                     Console.ReadKey();

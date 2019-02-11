@@ -39,6 +39,7 @@ namespace Figth
 
                     Console.ReadKey();
                 }
+
                 else if (!me.Alive)
                 {
                     

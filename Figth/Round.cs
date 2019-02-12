@@ -5,7 +5,7 @@ using System.Text;
 namespace Figth
 {
     class Round
-    {
+    {    
         static Random random = new Random();
 
         Gladiator me;

@@ -7,22 +7,26 @@ namespace Figth
 {
     class Gladiator
     {
-        static InfoGenerator info = new InfoGenerator(DateTime.Now.Millisecond);
-        string name;
-        public string Name { get { return name; } private set { name = value; } }
-        int strength;
-        int health;
+        static InfoGenerator info = new InfoGenerator(DateTime.Now.Millisecond);//slumpar fram från infogenerator per milisekund så de inte ska va stor chans för samma 
+        public List<Battle> history;// publik class där en lista från battle görs och hämtar historik
+        string name;//deklarerar en variblen av typ string o ger namnet name
+        public string Name { get { return name; } private set { name = value; } }//gör en public sträng där man kan hämta o sätta mane sedan en private där man kan se name värdet denna sista för gladaiatorn och den första för spelaren
+        int strength;//deklarerar en int variabel
+        int health;//samma som ovan
         int damage;
-        public int Health { get { return health; }
-            set {
-                if (value <= 0)
+        public int Health// samma som ovan men gör den public för alla
+        {
+            get { return health; } //ger datorn möjlighet att hämta från health och även ändra i denna varibeln
+            set//sätter den sedan
+            {
+                if (value <= 0)//om value är mindre eller lika med 0
                 {
-                    Alive = false;
+                    Alive = false;//sätter allive till false
                 }
-                health = value;
+                health = value;//sätter hälsan till värdet
             }
         }
-        public bool Alive { get; private set; }
+        public bool Alive { get; private set; }//gör en boolean med namnet Alive som men kan hämta men sätta nytt värde är privat
 
         public Gladiator()
         {
@@ -33,17 +37,23 @@ namespace Figth
             Alive = true;
         }
 
-        public Gladiator(string name) : this()
+        public Gladiator(string name) : this()//class Gladiator med typen string
         {
-            this.name = name;
+            this.name = name;//detta namnet sätt till namn
+            history = new List<Battle>();//gör en lista på historiken
         }
 
-        public void Info()
+        public void Info()//gör en class som heter info
         {
-            Console.WriteLine("Name" + "" + name);
-            Console.WriteLine("strengt" + "" + strength);
-            Console.WriteLine("damage" + "" + damage);
-            Console.WriteLine("Health" + "" + health + "\n");
+            Console.WriteLine("Name" + "" + name);//skriver ut texten Name sen varibeln name
+            Console.WriteLine("strengt" + "" + strength);// samma som ovan fast Strength
+            Console.WriteLine("damage" + "" + damage);//som ovan på Dammage
+            Console.WriteLine("Health" + "" + health + "\n");//som ovan med health sen \n är för radbrytning
+          
         }
+
+
     }
 }
+  
+

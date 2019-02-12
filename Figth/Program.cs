@@ -6,73 +6,67 @@ namespace Figth
 {
     class Program
     {
-        public static int list { get; private set; }
+        public static int list { get; private set; }//gör en lista som interger där man kan se vad som finns men skriva dit något är privat
 
         static void Main(string[] args)
         {
 
-            string Name;
-            string newgame;
-            bool keepalive;
+            string Name;// deklarerar en varibel av typ string som heter Name
+            string newgame; //samma som ovan men namnet newgame
+            bool keepalive; //deklarar en boolean variabel med namn keepaliver denna kan bara ge true och false
+            List<string> Score = new List<string>();//gör en lista av typen string som heter score
 
 
 
-            //du
+            //du skriver in namnet på din Gladiator
             Console.WriteLine("Write your name\n");
 
-            Name = Console.ReadLine();
-            Gladiator me = new Gladiator(Name);
+            Name = Console.ReadLine();//de du skrev in hamnar i variabeln Name
+            Gladiator me = new Gladiator(Name);//gör en ny gladiator med namnet me
 
-            //motståndare
+            //motståndare samma som oven annars
             Gladiator enamy = new Gladiator();
 
 
-            keepalive = true;
-            while (keepalive)
-
+            keepalive = true;//keepalive sätts till true
+            while (keepalive)//loop medan keepalive är true
             {
-                if (me.Alive && enamy.Alive)
-                {
-                    me.Health--;
-                    enamy.Health--;
-                    Console.WriteLine(me.Name + " " + "health is" + " " + me.Health + " " + enamy.Name + " helath is" + " " + enamy.Health);
+                Battle battle = new Battle(me, enamy);// gör en ny class som heter battle med me och enamy inplemeras
+                bool playerWin = battle.StartBattle(); // boolean variablen playerWin är lika med metthoden battle.startbattle n 
 
-                    Console.ReadKey();
+                if (playerWin)// om playerWin=true
+                {
+                    Console.WriteLine("type Y to hunt for more enemys.");//tryck y om du vill få en ny moståndare detta kommer när motståndaren har förlorat
+                    newgame = Console.ReadLine(); //föregående rad läst in och läggs i variablen newgame
+                }
+                else//annars
+                {
+                    newgame = "no";//newgame sätts till no
                 }
 
-                else if (!me.Alive)
+
+                if (newgame.ToUpper() == "Y")//om newgame får lnappen tryck y och toupper gör att om man skriver liten bokstav gör denna om de till stor
                 {
-                    
-
-                    Console.WriteLine(me.Name + "" + "You are dead");
-                 
-                    Console.ReadKey();
-                    foreach(string streangth in Gladiator())
-                        Console.Write($"{streangth});
-                    keepalive = false;
+                    enamy = new Gladiator();//gör en ny motståndare
                 }
-                else if (!enamy.Alive)
+                else//annars
                 {
-
-                    Console.WriteLine(enamy.Name + "" + " is dead will you play again? y/n?");
-                    newgame = Console.ReadLine();
-                    if (newgame == "Y")
-                        enamy = new Gladiator();
-                    else
-                        keepalive = false;
-
+                    keepalive = false;//sätter keepalive till false
+                    Console.WriteLine("History");//skriver ut History
+                    foreach (Battle item in me.history)//skriver ut historiken från me
+                    {
+                        Console.WriteLine(item);//skriver ut item alltså resultat
+                    }
                 }
-
 
             }
 
+            Console.WriteLine("End of program, press any key to exit.");//säger till att man ska trycka på en tangent för att avsluta
+            Console.ReadKey(true);//sätter så knapptrycket ej syns på skärmen men de är här de tass emot så datorn reagaerar
         }
 
-        private static IEnumerable<object> Gladiator()
-        {
-            throw new NotImplementedException();
-        }
     }
+
 
 }
 
